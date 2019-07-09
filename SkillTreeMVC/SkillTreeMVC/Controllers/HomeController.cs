@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkillTreeMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,21 @@ namespace SkillTreeMVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            List<AccountingViewModel> accountingList = new List<AccountingViewModel>();
+
+            Random random = new Random();
+            for (int i = 1; i <= 100; i++)
+            {
+                accountingList.Add(new AccountingViewModel()
+                {
+                    Num = i,
+                    Type = random.Next(1, 3).ToString(),
+                    Amount = random.Next(1, 10000).ToString("#,0"),
+                    Date = DateTime.Now.AddDays(i),
+                    Note = string.Empty
+                });
+            }
+            return View(accountingList);
         }
 
         public ActionResult About()
