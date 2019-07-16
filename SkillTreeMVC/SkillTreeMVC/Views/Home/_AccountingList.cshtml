@@ -11,13 +11,14 @@
             </tr>
             @if (Model != null && Model.Count > 0)
             {
+                var count = 0;
                 foreach (var item in Model)
                 {
                     <tr>
-                        <th>@item.Num</th>
-                        <th>@item.TypeStr</th>
+                        <th>@(++count)</th>
+                        <th>@(item.Type == "0" ? "支出" : "收入")</th>
                         <th>@item.Date.ToString("yyyy-MM-dd")</th>
-                        <th>@item.Amount</th>
+                        <th>@String.Format("{0:N0}", Convert.ToInt32(item.Amount))</th>
                     </tr>
                 }
             }
