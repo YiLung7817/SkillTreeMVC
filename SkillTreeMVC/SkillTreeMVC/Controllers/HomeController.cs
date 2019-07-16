@@ -9,6 +9,7 @@ namespace SkillTreeMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private SkillTreeHomeworkEntities db = new SkillTreeHomeworkEntities();
         public ActionResult Index()
         {
             
@@ -18,23 +19,16 @@ namespace SkillTreeMVC.Controllers
         [ChildActionOnly]
         public ActionResult _AccountingList()
         {
-            List<AccountingViewModel> accountingList = new List<AccountingViewModel>();
-
-            Random random = new Random();
-            for (int i = 1; i <= 100; i++)
+            var accountingList = db.AccountBook.OrderByDescending(d=>d.Dateee).Select(d => new AccountingViewModel()
             {
-                accountingList.Add(new AccountingViewModel()
-                {
-                    Num = i,
-                    Type = random.Next(1, 3).ToString(),
-                    Amount = random.Next(1, 10000).ToString("#,0"),
-                    Date = DateTime.Now.AddDays(i),
-                    Note = string.Empty
-                });
-            }
+                Type = d.Categoryyy.ToString(),
+                Amount = d.Amounttt.ToString(),
+                Date = d.Dateee,
+                Note = d.Remarkkk
+            }).ToList();
+
             return PartialView(accountingList);
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
