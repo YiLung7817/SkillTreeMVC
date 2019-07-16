@@ -11,6 +11,13 @@ namespace SkillTreeMVC.Controllers
     {
         public ActionResult Index()
         {
+            
+            return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult _AccountingList()
+        {
             List<AccountingViewModel> accountingList = new List<AccountingViewModel>();
 
             Random random = new Random();
@@ -25,7 +32,7 @@ namespace SkillTreeMVC.Controllers
                     Note = string.Empty
                 });
             }
-            return View(accountingList);
+            return PartialView(accountingList);
         }
 
         public ActionResult About()
