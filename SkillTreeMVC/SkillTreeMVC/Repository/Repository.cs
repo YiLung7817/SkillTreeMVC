@@ -1,4 +1,5 @@
-﻿using SkillTreeMVC.Models;
+﻿using SkillTreeMVC.Repository;
+using SkillTreeMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,18 +11,30 @@ namespace SkillTreeMVC.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DbContext _dbContext;
-        public Repository() {
-            _dbContext = new SkillTreeHomeworkEntities();
+        public IUnitOfWork UnitOfWork { get; set; }
+        private DbSet<T> _objectSet;
+        private DbSet<T> ObjectSet => _objectSet ?? (_objectSet = UnitOfWork.Context.Set<T>());
+
+        public Repository(IUnitOfWork unitOfWork) {
+            UnitOfWork = unitOfWork;
         }
+        /// <summary>
+        /// 取得所有資料
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<T> LookupAll()
         {
-            return _dbContext.Set<T>();
+            return ObjectSet;
         }
 
+        /// <summary>
+        /// 取得條件下的資料
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public IQueryable<T> Query(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            return ObjectSet.Where(filter);
         }
     }
 }
