@@ -18,20 +18,13 @@ namespace SkillTreeMVC.Repository
         public Repository(IUnitOfWork unitOfWork) {
             UnitOfWork = unitOfWork;
         }
-        /// <summary>
-        /// 取得所有資料
-        /// </summary>
-        /// <returns></returns>
+
         public IQueryable<T> LookupAll()
         {
             return ObjectSet;
         }
 
-        /// <summary>
-        /// 取得條件下的資料
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <returns></returns>
+
         public IQueryable<T> Query(Expression<Func<T, bool>> filter)
         {
             return ObjectSet.Where(filter);
