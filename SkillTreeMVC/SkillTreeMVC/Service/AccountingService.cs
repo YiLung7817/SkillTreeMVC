@@ -1,4 +1,5 @@
 ﻿using SkillTreeMVC.Models;
+using SkillTreeMVC.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,16 @@ namespace SkillTreeMVC.Service
     
     public class AccountingService
     {
-        private readonly SkillTreeHomeworkEntities _db;
+        private readonly IRepository<AccountBook> _accountingRepository;
+
         public AccountingService()
         {
-            _db = new SkillTreeHomeworkEntities();
+            _accountingRepository = new Repository<AccountBook>();
         }
 
         public IEnumerable<AccountingViewModel> Lookup()
         {
-            var accountingList = _db.AccountBook.OrderByDescending(d => d.Dateee).Select(d => new AccountingViewModel()
+            var accountingList = _accountingRepository.LookupAll().OrderByDescending(d => d.Dateee).Select(d => new AccountingViewModel()
             {
                 Type = d.Categoryyy.ToString(),
                 Amount = d.Amounttt.ToString(),
