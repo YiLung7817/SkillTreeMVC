@@ -1,5 +1,4 @@
-﻿@model List<SkillTreeMVC.Models.AccountingViewModel>
-
+﻿@model IEnumerable<SkillTreeMVC.Models.AccountingViewModel>
 <div class="row">
     <div class="col-md-12">
         <table class="table table-bordered table-hover">
@@ -9,8 +8,7 @@
                 <th>日期</th>
                 <th>金額</th>
             </tr>
-            @if (Model != null && Model.Count > 0)
-            {
+            @{ 
                 var count = 0;
                 foreach (var item in Model)
                 {
@@ -20,6 +18,7 @@
                         <th>@item.Date.ToString("yyyy-MM-dd")</th>
                         <th>@String.Format("{0:N0}", Convert.ToInt32(item.Amount))</th>
                     </tr>
+                    }
                 }
             }
         </table>

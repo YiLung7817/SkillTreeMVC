@@ -1,4 +1,5 @@
 ﻿using SkillTreeMVC.Models;
+using SkillTreeMVC.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,13 @@ namespace SkillTreeMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private SkillTreeHomeworkEntities db = new SkillTreeHomeworkEntities();
+        private readonly AccountingService _accountingService;
+
+        public HomeController()
+        {
+            _accountingService = new AccountingService();
+        }
+
         public ActionResult Index()
         {
             
@@ -19,15 +26,7 @@ namespace SkillTreeMVC.Controllers
         [ChildActionOnly]
         public ActionResult _AccountingList()
         {
-            var accountingList = db.AccountBook.OrderByDescending(d=>d.Dateee).Select(d => new AccountingViewModel()
-            {
-                Type = d.Categoryyy.ToString(),
-                Amount = d.Amounttt.ToString(),
-                Date = d.Dateee,
-                Note = d.Remarkkk
-            }).ToList();
-
-            return PartialView(accountingList);
+            return PartialView(_accountingService.Lookup());
         }
         public ActionResult About()
         {
