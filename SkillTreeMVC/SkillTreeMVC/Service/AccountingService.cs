@@ -12,11 +12,14 @@ namespace SkillTreeMVC.Service
     {
         private readonly IRepository<AccountBook> _accountingRepository;
 
-        public AccountingService()
+        public AccountingService(IUnitOfWork unitOfWork)
         {
-            _accountingRepository = new Repository<AccountBook>();
+            _accountingRepository = new Repository<AccountBook>(unitOfWork);
         }
-
+        /// <summary>
+        /// 取得記帳本所有資料
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<AccountingViewModel> Lookup()
         {
             var accountingList = _accountingRepository.LookupAll().OrderByDescending(d => d.Dateee).Select(d => new AccountingViewModel()

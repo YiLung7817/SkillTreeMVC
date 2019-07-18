@@ -1,4 +1,5 @@
 ﻿using SkillTreeMVC.Models;
+using SkillTreeMVC.Repository;
 using SkillTreeMVC.Service;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,11 @@ namespace SkillTreeMVC.Controllers
     public class HomeController : Controller
     {
         private readonly AccountingService _accountingService;
-
+        private readonly UnitOfWork _unitOfWork;
         public HomeController()
         {
-            _accountingService = new AccountingService();
+            _unitOfWork = new UnitOfWork();
+            _accountingService = new AccountingService(_unitOfWork);
         }
 
         public ActionResult Index()
