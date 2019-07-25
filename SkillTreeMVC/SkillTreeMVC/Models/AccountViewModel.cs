@@ -13,30 +13,15 @@ namespace SkillTreeMVC.Models
         /// <summary>
         /// 流水號
         /// </summary>
-        public int Num { get; set; }
+        public Guid Num { get; set; }
         /// <summary>
         /// 類別
         /// </summary>
-        public string Type { get; set; }
-        public string TypeStr
-        {
-            get
-            {
-                switch (this.Type)
-                {
-                    case "1":
-                        return "支出";
-                    case "2":
-                        return "收入";
-                    default:
-                        return string.Empty;
-                }
-            }
-        }
+        public string Category { get; set; }
         /// <summary>
         /// 金額
         /// </summary>
-        public string Amount { get; set; }
+        public int Amount { get; set; }
         /// <summary>
         /// 日期
         /// </summary>

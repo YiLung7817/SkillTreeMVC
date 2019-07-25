@@ -14,9 +14,9 @@
                 {
                     <tr>
                         <th>@(++count)</th>
-                        <th>@(item.Type == "0" ? "支出" : "收入")</th>
+                        <th>@item.Category</th>
                         <th>@item.Date.ToString("yyyy-MM-dd")</th>
-                        <th>@String.Format("{0:N0}", Convert.ToInt32(item.Amount))</th>
+                        <th>@item.Amount.ToString("###,###")</th>
                     </tr>
                     
                 }
