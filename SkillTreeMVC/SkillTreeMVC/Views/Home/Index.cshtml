@@ -8,7 +8,7 @@
     @using (Html.BeginForm("", "", null, FormMethod.Post, new { @class="form-horizontal" }))
     { 
         <div class="form-group">
-            <label for="category" class="col-sm-2 control-label">類別</label>
+            @Html.LabelFor(d=>d.Category, new { @class = "col-sm-2 control-label"})
             <div class="col-sm-10">
                 <select name="Category" class="form-control">
                     <option value="0">支出</option>
@@ -18,21 +18,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="money" class="col-sm-2 control-label">金額</label>
+            @Html.LabelFor(d => d.Amount, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
                 @Html.EditorFor(d => d.Amount, new { htmlAttributes = new { @class = "form-control", @placeholder = "金額" } })
                 @Html.ValidationMessageFor(d => d.Amount, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            <label for="date" class="col-sm-2 control-label">日期</label>
+            @Html.LabelFor(d => d.Date, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
                 @Html.EditorFor(d => d.Date, new { htmlAttributes = new { @class = "form-control", @placeholder = "日期" } })
                 @Html.ValidationMessageFor(d => d.Date, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            <label for="description" class="col-sm-2 control-label">備註</label>
+            @Html.LabelFor(d => d. Note, new { @class = "col-sm-2 control-label" })
             <div class="col-sm-10">
                 @Html.TextAreaFor(d => d.Note, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(d => d.Note, "", new { @class = "text-danger" })
