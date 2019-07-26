@@ -29,5 +29,10 @@ namespace SkillTreeMVC.Repository
         {
             return ObjectSet.Where(filter);
         }
+
+        public void Add(T Entity)
+        {
+            ObjectSet.Add(Entity);
+        }
     }
 }

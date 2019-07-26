@@ -21,7 +21,10 @@ namespace SkillTreeMVC.Repository
         /// <param name="filter"></param>
         /// <returns></returns>
         IQueryable<T> Query(Expression<Func<T, bool>> filter);
-
-
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="entity"></param>
+        void Add(T entity);
     }
 }
