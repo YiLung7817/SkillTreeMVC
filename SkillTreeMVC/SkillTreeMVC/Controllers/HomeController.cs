@@ -29,6 +29,19 @@ namespace SkillTreeMVC.Controllers
         {
             return PartialView(_accountingService.Lookup());
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddAccounting([Bind(Include = "Category,Amount,Date,Note")] AccountingViewModel accountViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _accountingService.Add(accountViewModel);
+                _unitOfWork.Commit();
+                return RedirectToAction("Index");
+            }
+            return View("Index");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
