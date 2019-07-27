@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkillTreeMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,10 @@ namespace SkillTreeMVC.Helper
 {
     public static class CategoryHelper
     {
-        public static MvcHtmlString DisplayCategory(this HtmlHelper helper, int category)
+        public static MvcHtmlString DisplayCategory(this HtmlHelper helper, CategoryType category)
         {
 
-            if (category == 0)
+            if (category == CategoryType.expense)
             {
                 return new MvcHtmlString("<span class='text-danger'>支出</span>");
             }

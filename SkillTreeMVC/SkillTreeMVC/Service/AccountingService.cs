@@ -25,7 +25,7 @@ namespace SkillTreeMVC.Service
             var accountingList = _accountingRepository.LookupAll().AsEnumerable().OrderByDescending(d => d.Dateee).Select(d => new AccountingViewModel()
             {
                 Num = d.Id,
-                Category = d.Categoryyy,
+                Category = (CategoryType)d.Categoryyy,
                 Amount = d.Amounttt,
                 Date = d.Dateee,
                 Note = d.Remarkkk
@@ -38,7 +38,7 @@ namespace SkillTreeMVC.Service
             var accountBook = new AccountBook() {
                 Id = Guid.NewGuid(),
                 Amounttt = accountViewModel.Amount,
-                Categoryyy = accountViewModel.Category,
+                Categoryyy = (int)accountViewModel.Category,
                 Dateee = accountViewModel.Date,
                 Remarkkk = accountViewModel.Note
             };

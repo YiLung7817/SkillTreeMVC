@@ -7,6 +7,12 @@ using System.Web.Mvc;
 
 namespace SkillTreeMVC.Models
 {
+
+    public enum CategoryType
+    {
+        expense = 0,
+        income = 1
+    }
     /// <summary>
     /// 記帳本
     /// </summary>
@@ -21,7 +27,7 @@ namespace SkillTreeMVC.Models
         /// </summary>
         [Required]
         [Display(Name = "類別")]
-        public int Category { get; set; }
+        public CategoryType Category { get; set; }
         /// <summary>
         /// 金額
         /// </summary>
