@@ -22,7 +22,7 @@ namespace SkillTreeMVC.Service
         /// <returns></returns>
         public IEnumerable<AccountingViewModel> Lookup()
         {
-            var accountingList = _accountingRepository.LookupAll().AsEnumerable().OrderByDescending(d => d.Dateee).Select(d => new AccountingViewModel()
+            var accountingList = _accountingRepository.LookupAll().OrderByDescending(d => d.Dateee).ToList().Select(d => new AccountingViewModel()
             {
                 Num = d.Id,
                 Category = (CategoryType)d.Categoryyy,
